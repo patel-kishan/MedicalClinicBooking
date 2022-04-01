@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Email_Alert_Physician_Calendar_Access_Request</fullName>
+        <description>Email Alert Physician Calendar Access Request</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Email</field>
+            <type>email</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/Physician_Calendar_Access_Request_Email</template>
+    </alerts>
+    <rules>
+        <fullName>Send Calendar Access Request Email To Physician</fullName>
+        <actions>
+            <name>Email_Alert_Physician_Calendar_Access_Request</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>RecordType.DeveloperName = &apos;Physician&apos; &amp;&amp; ISCHANGED(Calendar_Access_Requests__c) &amp;&amp; Calendar_Access_Requests__c&gt;0</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

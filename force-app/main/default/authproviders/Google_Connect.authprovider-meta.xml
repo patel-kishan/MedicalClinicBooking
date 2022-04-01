@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://accounts.google.com/o/oauth2/auth?access_type=offline&amp;approval_prompt=force</authorizeUrl>
+    <consumerKey>100153650688-270nljrcpaltpocav7aljpu56opfb51f.apps.googleusercontent.com</consumerKey>
+    <consumerSecret>Wb5Ef+SdkbdR58f+pqXg6CikYuvqh1O67Z6auvZvtFxRwbE02JFeaw==</consumerSecret>
+    <defaultScopes>email</defaultScopes>
+    <friendlyName>Google Connect</friendlyName>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>OpenIdConnect</providerType>
+    <sendAccessTokenInHeader>true</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <sendSecretInApis>true</sendSecretInApis>
+    <tokenUrl>https://oauth2.googleapis.com/token</tokenUrl>
+</AuthProvider>

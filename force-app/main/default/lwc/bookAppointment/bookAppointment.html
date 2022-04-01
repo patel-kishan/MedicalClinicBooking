@@ -1,0 +1,38 @@
+<template >    
+    <lightning-card class="slds-align_absolute-center" style="display: contents;">
+
+        <h3 slot="title">
+            <lightning-icon icon-name="standard:event" size="Medium"></lightning-icon>&nbsp;
+             Appointments Booking
+        </h3>        
+        <div>
+        
+        <template if:true={isStepOne}>
+            <div>
+                
+                    <c-search-patient onclicknext={handleNextClick} patients={patients}></c-search-patient>
+                
+            </div>
+        </template>
+        <template if:true={isStepTwo}>
+            <div>
+                
+                    <c-fill-appointment-details selected-patient-id={selectedPatientId} onclickback={handleBackClick}></c-fill-appointment-details>
+           
+            </div>
+        </template>
+        <div class="slds-align_absolute-center" style="display: flex;">
+        <template if:true={isEnablePrev}>
+            <lightning-button variant="brand-outline" label="Back" onclick={handlePrev}></lightning-button>
+        </template>
+         
+        <template if:true={isEnableNext}>
+            <template if:true={isStepOne}>
+            <lightning-button label="Next" variant="brand" onclick={handleNext}></lightning-button>
+            
+        </template>&nbsp;
+    </template>
+        </div>
+    </div>
+</lightning-card>
+</template>

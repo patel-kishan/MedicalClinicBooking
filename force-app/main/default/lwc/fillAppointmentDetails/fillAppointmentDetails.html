@@ -1,0 +1,108 @@
+        <template>
+        <lightning-layout multiple-rows="true" style="align-items: center;">
+        <lightning-layout-item size="12">
+
+        </lightning-layout-item>
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-combobox
+                name="specialization"
+                label="Specialization"
+                value={selectedSpecializationId}
+                placeholder="Select specialization"
+                options={specializationOptions}
+                onchange={handleSpecializationChange}
+                required
+            ></lightning-combobox>
+                
+            </lightning-layout-item>
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-input value={selectedSpecializationPrice} label="Price" disabled></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="6" padding="around-small">
+            <lightning-combobox
+                name="physician"
+                label="Physician"
+                value={selectedPhysicianId}
+                placeholder="Select Physician"
+                options={physicianOptions}
+                onchange={handlePhysicianChange}
+                required
+            ></lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-layout >
+                    <lightning-layout-item size="6" padding="around-small">
+            <lightning-input type="date" name="appointmentDate" label="Select Appointment Date" value={selectedDate} onchange={handleDateChange} required>                    
+            </lightning-input>
+            </lightning-layout-item>
+            
+        </lightning-layout>
+            </lightning-layout-item>
+
+
+        </lightning-layout>
+        <div class="slds-align_absolute-center" style="display: flex;">
+        <lightning-button variant="brand" label="Check Availability" onclick={handleCheckAvailability}></lightning-button>
+        </div>&nbsp;&nbsp;
+
+        <template if:true={isSpinnerLoading}>
+        <div class="slds-p-around_x-large">
+            <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+        </div>
+        </template>
+        <template if:true={openModal}>  
+        <div class="slds-modal slds-fade-in-open slds-backdrop">  
+        <div class="slds-modal__container">  
+        <!------HEADER Section-->  
+        <div class="slds-modal__header">  
+            <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"  
+            variant="bare-inverse" onclick={closeModal} class="slds-modal__close">  
+            </lightning-button-icon>  
+            <h2>Select from Available Slots</h2>  
+        </div>  
+        <!------Body Section-->  
+        <div class="slds-modal__content slds-p-around_medium">  
+            <template if:true={showAppointmentSlots}>
+                
+                    <template if:false={hasCalendarAccess}>
+                        <lightning-card title="Physician has not shared the calendar, please request access.">
+                            
+                        </lightning-card>                    
+                    </template>
+                    <template if:true={hasCalendarAccess}>
+                        <template if:true={hasAvailableSlots}>
+                            
+                            <lightning-datatable
+                                key-field="appointmentNum"
+                                data={availableSlots}
+                                columns={appointmentTableColumns}
+                                max-row-selection="1"
+                                onrowselection={handleSlotSelection}>
+                            </lightning-datatable>
+                        </template>
+                        <template if:false={hasAvailableSlots}>
+                            <lightning-card title="No slots available, please select another date."></lightning-card>                            
+                        </template>
+
+                        
+                    </template>
+                
+            </template>
+        </div>  
+        <!------Footer Section-->  
+        <div class="slds-modal__footer">
+            <lightning-button icon-name="utility:close" label="Close" variant="destructive" onclick={closeModal}> </lightning-button>&nbsp;  
+            
+            <template if:true={hasAvailableSlots}>
+            <lightning-button icon-name="utility:save" label="Save Appointment" variant="success" onclick={handleSaveAppointment}>
+            </lightning-button> 
+        </template> 
+            <template if:false={hasCalendarAccess}>
+            <lightning-button  variant="brand" label="Request Access" title="" onclick={handleRequestAccess} class="slds-m-left_x-small slds-float_right">
+        </lightning-button>
+            </template>
+        </div>  
+        </div>  
+        </div>  
+        </template>  
+        </template>

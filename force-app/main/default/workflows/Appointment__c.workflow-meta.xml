@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Email_Alert_Send_Appointment_Confirmation_Email</fullName>
+        <description>Email Alert Send Appointment Confirmation Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Patient__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/Patient_Appointment_Confirmation_Email</template>
+    </alerts>
+    <rules>
+        <fullName>Send Appointment Confirmation Email to Paitent</fullName>
+        <actions>
+            <name>Email_Alert_Send_Appointment_Confirmation_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Workflow to send appointment confirmation email to patient on appointment creation</description>
+        <formula>NOT(ISNULL(Patient__r.Email))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

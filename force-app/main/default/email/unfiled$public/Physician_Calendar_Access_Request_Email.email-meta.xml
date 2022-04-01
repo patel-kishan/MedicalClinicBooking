@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template to send calendar access request email to physician</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Physician Calendar Access Request Email</name>
+    <style>none</style>
+    <subject>Please share your google calendar request with Toptal Medical Clinic</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

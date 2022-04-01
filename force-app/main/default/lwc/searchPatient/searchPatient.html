@@ -1,0 +1,33 @@
+<template>
+    <template if:true={isSpinnerLoading}>
+        <div class="slds-p-around_x-large">
+            <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+        </div>
+    </template>
+
+    <lightning-card>
+        <div class="slds-box slds-p-around_small slds-m-around_x-small">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-3 slds-p-around_small slds-m-bottom_medium">
+                    <c-custom-lookup-field 
+                        lookup-label="Search Patient" 
+                        object-api-name="Contact" 
+                        icon-name="standard:contact"  
+                        onrecordselection={handleCustomLookupSelection}
+                        required="true"
+                        filter="RecordType.Name = 'Patient'"
+                        search-placeholder="Enter patient name...">
+                    </c-custom-lookup-field> 
+                </div>
+                <div class="slds-col slds-size_2-of-3 slds-border_left">
+                    <lightning-datatable
+                        key-field="Id"
+                        data={patients}
+                        columns={columns}
+                        hide-checkbox-column>
+                    </lightning-datatable>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

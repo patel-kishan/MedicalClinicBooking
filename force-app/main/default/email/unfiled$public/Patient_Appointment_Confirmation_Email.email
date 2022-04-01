@@ -1,0 +1,6 @@
+Hi {!Appointment__c.Patient__c},
+
+Your appointment {!Appointment__c.Name} with Medical Clinic is confirmed on {!Appointment__c.Appointment_Date__c} at  {!Appointment__c.Start_Time__c} with Dr. {!Appointment__c.Physician__c}. Please try to reach 10 mins before your appointment.
+
+Regards,
+Medical Clinic Team
